@@ -414,12 +414,12 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
                 
                 let itemWidthRect : CGRect = (titleText as NSString).boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSFontAttributeName:menuItemFont], context: nil)
                 
-                menuItemWidth = itemWidthRect.width
+                menuItemWidth = itemWidthRect.width + 23
                 
                 menuItemFrame = CGRect(x: totalMenuItemWidthIfDifferentWidths + menuMargin + (menuMargin * index), y: 0.0, width: menuItemWidth, height: menuHeight)
                 
-                totalMenuItemWidthIfDifferentWidths += itemWidthRect.width
-                menuItemWidths.append(itemWidthRect.width)
+                totalMenuItemWidthIfDifferentWidths += itemWidthRect.width + 23
+                menuItemWidths.append(itemWidthRect.width + 23)
             } else {
                 if centerMenuItems && index == 0.0  {
                     startingMenuMargin = ((self.view.frame.width - ((CGFloat(controllerArray.count) * menuItemWidth) + (CGFloat(controllerArray.count - 1) * menuMargin))) / 2.0) -  menuMargin
