@@ -96,6 +96,7 @@ public enum CAPSPageMenuOption {
     case menuBottomButtonBackgroundColor(UIColor)
     case menuBottomButtonBorderColor(UIColor)
     case menuBottomButtonViewBackgroundColor(UIColor)
+    case menuBottomButtonCornerRadius(CGFloat)
 }
 
 open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
@@ -181,6 +182,7 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
     var buttonTitleColor: UIColor = UIColor.black
     var buttonBorderColor: UIColor = UIColor.clear
     var buttonViewBackgroundColor: UIColor = UIColor.gray
+    var buttonCornerRadius: CGFloat = 0
     
     enum CAPSPageMenuScrollDirection : Int {
         case left
@@ -285,6 +287,9 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
                     buttonBorderColor = value
                 case let .menuBottomButtonViewBackgroundColor(value):
                     buttonViewBackgroundColor = value
+                case let .menuBottomButtonCornerRadius(value):
+                    buttonCornerRadius = value
+                    
                 }
             }
             
@@ -383,6 +388,7 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             menuBottomButton.setTitleColor(buttonTitleColor, for: .normal)
             menuBottomButton.backgroundColor = buttonBackgroundColor
             menuBottomButton.layer.borderColor = buttonBorderColor.cgColor
+            menuBottomButton.layer.cornerRadius = buttonCornerRadius
             
             buttonView.backgroundColor = buttonViewBackgroundColor
             
@@ -461,7 +467,7 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
                 
                 let titleText : String = controllerTitle != nil ? controllerTitle! : "Menu \(Int(index) + 1)"
                 
-              let itemWidthRect : CGRect = (titleText as NSString).boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:menuItemFont], context: nil)
+                let itemWidthRect : CGRect = (titleText as NSString).boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:menuItemFont], context: nil)
                 
                 menuItemWidth = itemWidthRect.width + 23
                 
@@ -591,7 +597,7 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             for (index, menuItem) in menuItems.enumerated() {
                 let controllerTitle = controllerArray[index].title!
                 
-              let itemWidthRect = controllerTitle.boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:menuItemFont], context: nil)
+                let itemWidthRect = controllerTitle.boundingRect(with: CGSize(width: 1000, height: 1000), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font:menuItemFont], context: nil)
                 
                 menuItemWidth = itemWidthRect.width
                 
@@ -1126,3 +1132,4 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
         }
     }
 }
+
